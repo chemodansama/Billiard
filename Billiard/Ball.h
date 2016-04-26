@@ -32,25 +32,25 @@ class Ball
         }
     };
 
-	const std::pair<std::vector<GLfloat>, std::vector<GLushort>> data_;
+    const std::pair<std::vector<GLfloat>, std::vector<GLushort>> data_;
 
-	const VertexArray vao_;
+    const VertexArray vao_;
     const VertexBuffer vbo_;
-	const VertexBuffer indices_;
-	const Programs programs_;
-	const Texture albedo_;
-	bool lineFill_;
+    const VertexBuffer indices_;
+    const Programs programs_;
+    const Texture albedo_;
+    bool lineFill_;
 
     const glm::mat4 modelMat_;
     glm::mat4 depthModelViewProj_;
 public:
-	Ball(const std::string &exePath);
+    Ball(const std::string &exePath);
 
-	void render() const;
+    void render() const;
     void renderShadow() const;
     void renderDepth() const;
 
-	void setLineFill(bool value);
+    void setLineFill(bool value);
     void update(const Frustum &frustum, const ConeLight &light);
 
     const glm::mat4 getDepthModelViewProj() const { return depthModelViewProj_; }

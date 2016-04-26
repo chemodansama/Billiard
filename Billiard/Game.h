@@ -96,7 +96,7 @@ public:
     void mouseUp();
     void mouseScrolled(float y);
 
-	void keyAction(int key, bool pressed);
+    void keyAction(int key, bool pressed);
 };
 
 }

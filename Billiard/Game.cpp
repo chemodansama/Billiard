@@ -332,7 +332,7 @@ void Game::resize(int surfaceWidth, int surfaceHeight) {
     surfaceHeight_ = surfaceHeight;
 
     glViewport(0, 0, surfaceWidth, surfaceHeight);
-	updateProjection();
+    updateProjection();
 
     // recreate scene depth framebuffer with new surface size
     //sceneDepthMap_ = createDepthMap<GL_TEXTURE_RECTANGLE>(GL_DEPTH_COMPONENT24, GL_DEPTH_COMPONENT, GL_UNSIGNED_INT, surfaceWidth, surfaceHeight);
@@ -353,14 +353,14 @@ void Game::mouseUp() {
 void Game::mouseMoved(float x, float y) {
     auto newPos = glm::vec2(x, y);
     cameraRot_ -= (mousePos_ - newPos) * 0.25f;
-	if (cameraRot_.y < -90) {
-		cameraRot_.y = -90;
-	} else if (cameraRot_.y > 0) {
-		cameraRot_.y = 0;
-	}
+    if (cameraRot_.y < -90) {
+        cameraRot_.y = -90;
+    } else if (cameraRot_.y > 0) {
+        cameraRot_.y = 0;
+    }
 
-	mousePos_ = newPos;
-	updateModelview();
+    mousePos_ = newPos;
+    updateModelview();
 }
 
 void Game::mouseScrolled(float y) {
@@ -383,8 +383,8 @@ void Game::updateModelview() {
 }
 
 void Game::updateProjection() {
-	auto aspect = static_cast<float>(surfaceWidth_) / surfaceHeight_;
-	frustum_.ProjSetPerspective(45.0f, aspect, 0.1f, frustumFar);
+    auto aspect = static_cast<float>(surfaceWidth_) / surfaceHeight_;
+    frustum_.ProjSetPerspective(45.0f, aspect, 0.1f, frustumFar);
 }
 
 void Game::keyAction(int key, bool pressed) {

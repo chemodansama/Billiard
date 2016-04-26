@@ -34,9 +34,9 @@ namespace {
     {
         if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
             glfwSetWindowShouldClose(window, GL_TRUE);
-		} else {
-			g->keyAction(key, action == GLFW_PRESS || action == GLFW_REPEAT);
-		}
+        } else {
+            g->keyAction(key, action == GLFW_PRESS || action == GLFW_REPEAT);
+        }
     }
 
     void mouse_callback(GLFWwindow *window, int button, int action, int mods) {

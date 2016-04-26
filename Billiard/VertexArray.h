@@ -11,17 +11,17 @@ namespace billiard {
 class VertexArray
 {
 public:
-	VertexArray(void) { 
+    VertexArray(void) { 
         glGenVertexArrays(1, &vao_); 
     }
-	VertexArray(VertexArray&) = delete;
-	VertexArray(VertexArray&& v) : vao_(v.vao_) { v.vao_ = 0; }
+    VertexArray(VertexArray&) = delete;
+    VertexArray(VertexArray&& v) : vao_(v.vao_) { v.vao_ = 0; }
     VertexArray &operator=(VertexArray&) = delete;
     VertexArray &operator=(VertexArray&& v) { release(); vao_ = v.vao_; v.vao_ = 0; }
 
-	~VertexArray(void) { release(); }
+    ~VertexArray(void) { release(); }
 
-	operator GLuint() const { return vao_; }
+    operator GLuint() const { return vao_; }
 
 private:
     GLuint vao_;

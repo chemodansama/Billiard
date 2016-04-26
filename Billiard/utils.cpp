@@ -18,7 +18,7 @@ namespace utils {
         0.5, 0.5, 0.5, 1.0
     );
 
-	std::string getExePath() {
+    std::string getExePath() {
         TCHAR szPath[MAX_PATH];
 
         if (auto size = GetModuleFileName(0, szPath, MAX_PATH)) {
@@ -30,27 +30,27 @@ namespace utils {
         }
     }
 
-	std::vector<char> loadAsset(const std::string &filename) {
-		std::ifstream t(filename);
-		std::vector<char> data;
+    std::vector<char> loadAsset(const std::string &filename) {
+        std::ifstream t(filename);
+        std::vector<char> data;
 
-		t.seekg(0, std::ios::end);   
-		data.reserve(static_cast<size_t>(t.tellg()));
-		t.seekg(0, std::ios::beg);
+        t.seekg(0, std::ios::end);   
+        data.reserve(static_cast<size_t>(t.tellg()));
+        t.seekg(0, std::ios::beg);
 
-		data.assign((std::istreambuf_iterator<char>(t)),
-					std::istreambuf_iterator<char>());
+        data.assign((std::istreambuf_iterator<char>(t)),
+                    std::istreambuf_iterator<char>());
 
-		return data;
-	}
+        return data;
+    }
 
-	std::vector<unsigned char> loadPng(const char *filename, 
-			unsigned int *width, unsigned int *height, unsigned int *bpp) {
-		std::vector<unsigned char> result;
-		if (auto bitmap = FreeImage_Load(FIF_PNG, filename)) {
-			*width = FreeImage_GetWidth(bitmap);
-			*height = FreeImage_GetHeight(bitmap);
-			*bpp = FreeImage_GetBPP(bitmap);
+    std::vector<unsigned char> loadPng(const char *filename, 
+            unsigned int *width, unsigned int *height, unsigned int *bpp) {
+        std::vector<unsigned char> result;
+        if (auto bitmap = FreeImage_Load(FIF_PNG, filename)) {
+            *width = FreeImage_GetWidth(bitmap);
+            *height = FreeImage_GetHeight(bitmap);
+            *bpp = FreeImage_GetBPP(bitmap);
 
             if (*bpp != 24) {
                 auto oldBitmap = bitmap;
@@ -60,25 +60,25 @@ namespace utils {
             }
             assert(*bpp == 24 || *bpp == 32);
 
-			auto type = FreeImage_GetImageType(bitmap);
-			auto bits = FreeImage_GetBits(bitmap);
+            auto type = FreeImage_GetImageType(bitmap);
+            auto bits = FreeImage_GetBits(bitmap);
             
-			auto pitch = FreeImage_GetPitch(bitmap);
-			for (unsigned int y = 0; y < *height; y++) {
-				auto pixel = (BYTE*)bits;
-				for (unsigned int x = 0; x < *width; x++) {
-					result.push_back(pixel[FI_RGBA_RED]);
-					result.push_back(pixel[FI_RGBA_GREEN]);
-					result.push_back(pixel[FI_RGBA_BLUE]);
-					pixel += *bpp / 8;
-				}
-				// next line
-				bits += pitch;
-			}
-			FreeImage_Unload(bitmap);
-		}
-		return result;
-	}
+            auto pitch = FreeImage_GetPitch(bitmap);
+            for (unsigned int y = 0; y < *height; y++) {
+                auto pixel = (BYTE*)bits;
+                for (unsigned int x = 0; x < *width; x++) {
+                    result.push_back(pixel[FI_RGBA_RED]);
+                    result.push_back(pixel[FI_RGBA_GREEN]);
+                    result.push_back(pixel[FI_RGBA_BLUE]);
+                    pixel += *bpp / 8;
+                }
+                // next line
+                bits += pitch;
+            }
+            FreeImage_Unload(bitmap);
+        }
+        return result;
+    }
 
     void printStack( void )
     {

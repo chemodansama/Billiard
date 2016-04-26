@@ -19,9 +19,9 @@ namespace glsl {
 void logShaderInfo(GLuint shader) {
     GLint size;
     glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &size);
-	if (!size) {
-		return;
-	}
+    if (!size) {
+        return;
+    }
 
     std::vector<char> infoLog(size);
     GLsizei infoLen;
@@ -102,13 +102,13 @@ std::vector<Uniform> loadUniformLocations(GLuint program) {
 GLuint compileProgram(GLuint vs, GLuint tcs, GLuint tes, GLuint fs) {
     auto program = glCreateProgram();
     glAttachShader(program, vs);
-	if (tcs) {
-		glAttachShader(program, tcs);
-	}
+    if (tcs) {
+        glAttachShader(program, tcs);
+    }
 
-	if (tes) {
-		glAttachShader(program, tes);
-	}
+    if (tes) {
+        glAttachShader(program, tes);
+    }
 
     glAttachShader(program, fs);
     glLinkProgram (program);
@@ -198,7 +198,7 @@ void Program::setUniformInt(const int location, int value) const {
 void Program::setUniformMat3(const std::string &name, bool transpose, const float *value) const {
     int loc = getUniformLocation(name);
     if (loc < 0) {
-		LOG(WARNING) << "Unknown uniform : " << name;
+        LOG(WARNING) << "Unknown uniform : " << name;
         return;
     }
     glUniformMatrix3fv(loc, 1, transpose, value);
@@ -207,36 +207,36 @@ void Program::setUniformMat3(const std::string &name, bool transpose, const floa
 void Program::setUniformMat4(const std::string &name, bool transpose, const float *value) const {
     int loc = getUniformLocation(name);
     if (loc < 0) {
-		LOG(WARNING) << "Unknown uniform : " << name;
+        LOG(WARNING) << "Unknown uniform : " << name;
         return;
     }
     glUniformMatrix4fv(loc, 1, transpose, value);
 }
 
 void Program::setUniformVec4(int location, const float *value, const int count) const {
-	if (location < 0) {
-		LOG(WARNING) << "Unknown uniform : " << location;
-		return;
-	}
-	glUniform4fv(location, count, value);
+    if (location < 0) {
+        LOG(WARNING) << "Unknown uniform : " << location;
+        return;
+    }
+    glUniform4fv(location, count, value);
 }
 
 void Program::setUniformVec4(const std::string &name, const float *value, const int count) const {
     auto location = getUniformLocation(name);
-	if (location < 0) {
-		LOG(WARNING) << "Unknown uniform : " << name;
-		return;
-	}
+    if (location < 0) {
+        LOG(WARNING) << "Unknown uniform : " << name;
+        return;
+    }
     setUniformVec4(location, value, count);
 }
 
 void Program::setUniformVec3(const std::string &name, const float *value) const {
-	auto loc = getUniformLocation(name);
-	if (loc < 0) {
-		LOG(WARNING) << "Unknown uniform : " << name;
-		return;
-	}
-	glUniform3fv(loc, 1, value);
+    auto loc = getUniformLocation(name);
+    if (loc < 0) {
+        LOG(WARNING) << "Unknown uniform : " << name;
+        return;
+    }
+    glUniform3fv(loc, 1, value);
 }
 
 void Program::bind() const {
@@ -265,8 +265,8 @@ int Program::getUniformLocation(const std::string &name) const {
 }
 
 std::string loadShaderFromFile(const std::string &fileName) {
-	auto data = utils::loadAsset(fileName);
-	return std::string(data.begin(), data.end());
+    auto data = utils::loadAsset(fileName);
+    return std::string(data.begin(), data.end());
 }
 
 }

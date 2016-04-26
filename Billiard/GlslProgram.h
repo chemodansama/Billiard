@@ -75,7 +75,7 @@ public:
         }
         return shader;
     }
-	Shader() : shader(0) {}
+    Shader() : shader(0) {}
     Shader(Shader&) = delete;
     Shader(Shader&& s) : shader(s.shader) { s.shader = 0; }
     Shader &operator=(Shader&) = delete;
@@ -91,14 +91,14 @@ public:
     }
 private:
     Shader(GLuint shader) : shader(shader) {}
-	GLuint shader;
+    GLuint shader;
 };
 
 class Program {
 private:
     Shader mVertexShader;
-	Shader mTessControlShader;
-	Shader mTessEvalShader;
+    Shader mTessControlShader;
+    Shader mTessEvalShader;
     Shader mFragmentShader;
     GLuint mProgram;
 
@@ -113,7 +113,7 @@ public:
     Program(Program&&); // = delete; // can be implemented though.
     Program& operator=(const Program&); // = delete;
     Program& operator=(Program&&); // = delete; // can be implemented though.
-	~Program();
+    ~Program();
 
     static void unbind() { glUseProgram(0); }
 
@@ -126,11 +126,11 @@ public:
     void setUniformInt(const int location, int value) const;
     
     void setUniformMat4(const std::string &name, bool transpose, const float *value) const;
-	void setUniformMat3(const std::string &name, bool transpose, const float *value) const;
+    void setUniformMat3(const std::string &name, bool transpose, const float *value) const;
 
-	void setUniformVec4(const std::string &name, const float *value, const int count = 1) const;
+    void setUniformVec4(const std::string &name, const float *value, const int count = 1) const;
     void setUniformVec4(int location, const float *value, const int count = 1) const;
-	void setUniformVec3(const std::string &name, const float *value) const;
+    void setUniformVec3(const std::string &name, const float *value) const;
 
     bool setAttrPtr(const std::string &name, int numComponents, GLsizei stride, void *ptr, 
         GLenum type = GL_FLOAT, bool normalized = false) const;
