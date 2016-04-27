@@ -51,7 +51,7 @@ public:
     VertexBuffer(VertexBuffer&& v) : vbo(std::move(v.vbo)) {}
 
     VertexBuffer &operator=(VertexBuffer&) = delete;
-	VertexBuffer &operator=(VertexBuffer&& v) { vbo = std::move(v.vbo); return *this; }
+    VertexBuffer &operator=(VertexBuffer&& v) { vbo = std::move(v.vbo); return *this; }
 
     template <GLenum target, typename V>
     static VertexBuffer create(const V *data, size_t length) {
