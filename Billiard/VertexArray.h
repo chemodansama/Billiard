@@ -17,7 +17,7 @@ public:
     VertexArray(VertexArray&) = delete;
     VertexArray(VertexArray&& v) : vao_(v.vao_) { v.vao_ = 0; }
     VertexArray &operator=(VertexArray&) = delete;
-    VertexArray &operator=(VertexArray&& v) { release(); vao_ = v.vao_; v.vao_ = 0; }
+    VertexArray &operator=(VertexArray&& v) { release(); vao_ = v.vao_; v.vao_ = 0; return *this; }
 
     ~VertexArray(void) { release(); }
 
