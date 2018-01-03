@@ -7,7 +7,9 @@
 
 namespace billiard {
 
-ConeLight::ConeLight(void) : spotExponent_(40)
+ConeLight::ConeLight(void) 
+        : spotExponent_(40)
+        , length_ { 2.25f }
 {
     setSpotCutoff(45);
     direction_ = glm::vec3(0, 0, -1);

@@ -60,7 +60,7 @@ public:
         v.bind<target>();
         v.bufferData<target>(data, length);
         VertexBuffer::unbind<target>();
-        return std::move(v);
+        return v;
     }
 
     template <GLenum target, typename V>

@@ -17,7 +17,7 @@ namespace billiard {
 namespace {
     int shadowMapSize = 1024;
     float shadowMapSizef = static_cast<float>(shadowMapSize);
-    float frustumFar = 10.0f;
+    float frustumFar = 20.0f;
     
     const float vertices[] =  {
         0, 0, 0, 0, 0,
@@ -241,7 +241,8 @@ Game::Game(int surfaceWidth, int surfaceHeight)
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
 
-    light_.setPosition(glm::vec3(0, 0, 2));
+    light_.setPosition(glm::vec3(0, 2, 2));
+    light_.setDirection(glm::normalize(glm::vec3(0, -2, -2)));
 
     glBindVertexArray(quadVao_);
     quad_.bind<GL_ARRAY_BUFFER>();
